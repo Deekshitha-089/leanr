@@ -11,6 +11,7 @@ import Dashboard from "@/pages/Dashboard";
 import Explore from "@/pages/Explore";
 import Chat from "@/pages/Chat";
 import Meets from "@/pages/Meets";
+import ComingSoon from "@/pages/ComingSoon";
 
 function Router() {
   return (
@@ -22,6 +23,7 @@ function Router() {
       <Route path="/explore" component={Explore} />
       <Route path="/chat" component={Chat} />
       <Route path="/meets" component={Meets} />
+      <Route path="/coming-soon" component={ComingSoon} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -24,7 +24,7 @@ export default function Auth() {
 
     setTimeout(() => {
       setIsLoading(false);
-      setLocation("/dashboard");
+      setLocation("/coming-soon");
     }, 1500);
   };
 
@@ -34,7 +34,7 @@ export default function Auth() {
 
     setTimeout(() => {
       setIsLoading(false);
-      setLocation("/profile-setup");
+      setLocation("/coming-soon");
     }, 1500);
   };
 
