@@ -1,0 +1,150 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  /* Custom Colors from Brief */
+  --color-rose-quartz: hsl(var(--rose-quartz));
+  --color-peach: hsl(var(--peach));
+  --color-marsala: hsl(var(--marsala));
+  --color-cognac: hsl(var(--cognac));
+  --color-cream: hsl(var(--cream));
+
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-display: 'EB Garamond', serif;
+  --font-button: 'Syne', sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+}
+
+:root {
+  --rose-quartz: 0 63% 93%;
+  --peach: 26 56% 76%;
+  --marsala: 8 41% 32%;
+  --cognac: 16 31% 46%;
+  --cream: 30 20% 97%;
+
+  --background: 0 0% 100%;
+  --foreground: 8 41% 32%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 8 41% 32%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 8 41% 32%;
+
+  --primary: 8 41% 32%;
+  --primary-foreground: 0 63% 93%;
+
+  --secondary: 0 63% 93%;
+  --secondary-foreground: 8 41% 32%;
+
+  --muted: 30 20% 97%;
+  --muted-foreground: 16 31% 46%;
+
+  --accent: 26 56% 76%;
+  --accent-foreground: 8 41% 32%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 26 56% 76%;
+  --input: 26 56% 76%;
+  --ring: 8 41% 32%;
+
+  --radius: 0.75rem;
+}
+
+body {
+  @apply bg-background text-foreground font-sans selection:bg-rose-quartz selection:text-marsala;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-serif text-marsala;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.glass-panel {
+  @apply bg-white/70 backdrop-blur-md border border-white/40 shadow-sm;
+}
+
+.soft-shadow {
+  box-shadow: 0 10px 40px -10px rgba(116, 57, 48, 0.08);
+}
+
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 20s linear infinite;
+}
+
+.animate-marquee-right {
+  animation: marquee-right 20s linear infinite;
+}
+
+/* optional: pause on hover */
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused;
+}
+
+@keyframes slideUpBlur {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(8px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.animate-slideUp {
+  animation: slideUpBlur 0.8s ease forwards;
+}
