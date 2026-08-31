@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { motion } from "framer-motion";
+
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 
@@ -10,33 +10,38 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 import { Card, CardContent } from "@/components/ui/card";
-
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
 
 export default function Auth() {
   const [, setLocation] = useLocation();
+
   const [isLoading, setIsLoading] = useState(false);
   const [tab, setTab] = useState("login");
 
   const handleLogin = (e) => {
-    e.preventDefault();
-    setIsLoading(true);
+  e.preventDefault();
+  setIsLoading(true);
 
-    setTimeout(() => {
-      setIsLoading(false);
-      setLocation("/coming-soon");
-    }, 1500);
-  };
+  setTimeout(() => {
+    setIsLoading(false);
+    setLocation("/dashboard");
+  }, 1000);
+};
 
-  const handleSignup = (e) => {
-    e.preventDefault();
-    setIsLoading(true);
+const handleSignup = (e) => {
+  e.preventDefault();
+  setIsLoading(true);
 
-    setTimeout(() => {
-      setIsLoading(false);
-      setLocation("/coming-soon");
-    }, 1500);
-  };
+  setTimeout(() => {
+    setIsLoading(false);
+    setLocation("/dashboard");
+  }, 1000);
+};
 
   function RollingWord() {
   const words = ["exchange", "upskill", "develop", "progress"];
@@ -52,74 +57,75 @@ export default function Auth() {
 
   return (
     <h2 className="font-serif text-4xl md:text-5xl text-[hsl(var(--marsala))] text-center flex items-center justify-center gap-2">
-
-      Ready to
-
+      Ready to{" "}
       <span className="relative h-[1.2em] overflow-hidden text-[hsl(var(--cognac))]">
-
         <span
           className="flex flex-col transition-transform duration-500 ease-in-out"
-          style={{ transform: `translateY(-${index * 1.2}em)` }}
+          style={{
+            transform: `translateY(-${index * 1.2}em)`,
+          }}
         >
           {words.map((word, i) => (
-            <span key={i} className="h-[1.2em] flex items-center justify-center">
+            <span
+              key={i}
+              className="h-[1.2em] flex items-center justify-center"
+            >
               {word}
             </span>
           ))}
         </span>
-
-      </span>
-
+      </span>{" "}
       ?
-
     </h2>
   );
 }
 
   return (
-<div className="min-h-screen relative flex flex-col overflow-hidden">
-      {/* Background image */}
+    <div className="min-h-screen relative flex flex-col overflow-hidden font-button">
+
+      {/* Background Image */}
       <img
         src="/login-bg.png"
         alt="background"
         className="absolute inset-0 w-full h-full object-cover blur-md scale-110 z-0"
       />
 
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--rose-quartz))]/20 via-white/60 to-[hsl(var(--peach))]/20 z-10"></div>
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--rose-quartz))]/20 via-white/60 to-[hsl(var(--peach))]/20 z-10" />
 
       {/* Navbar */}
       <div className="relative z-30">
         <Navbar />
       </div>
 
-      {/* Auth section */}
-<div className="flex-1 flex items-center justify-center p-6 pt-32 relative z-20">
+      {/* Auth Section */}
+      <div className="flex-1 flex items-center justify-center p-6 pt-32 relative z-20">
+
         <motion.div
-  initial={{ opacity: 0, y: 35 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.55 }}
-  className="w-full max-w-md space-y-8"
->
+          initial={{ opacity: 0, y: 35 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55 }}
+          className="w-full max-w-md space-y-8"
+        >
 
-  <RollingWord />
+          {/* Rolling Heading */}
+          <RollingWord />
 
-<Card className="rounded-3xl bg-white/70 backdrop-blur-xl border border-white/40 shadow-2xl"></Card>
-
+          {/* Auth Card */}
           <Card className="rounded-3xl bg-white/70 backdrop-blur-xl border border-white/40 shadow-2xl">
 
             <CardContent className="p-8">
 
-              {/* Welcome message */}
+              {/* Welcome Message */}
               <div className="text-center mb-6">
 
-                <h2 className="text-xl font-semibold text-[hsl(var(--marsala))]">
+                <h2 className="font-button text-xl font-semibold text-[hsl(var(--marsala))]">
                   {tab === "login"
                     ? "Welcome back, we missed you"
                     : "Hi, welcome"}
                 </h2>
 
-                <p className="text-sm text-[hsl(var(--marsala))]/60">
+                <p className="font-button text-sm text-[hsl(var(--marsala))]/60">
                   {tab === "login"
                     ? "Please enter your details"
                     : "Fill your information below"}
@@ -127,191 +133,317 @@ export default function Auth() {
 
               </div>
 
+              {/* Tabs */}
               <Tabs value={tab} onValueChange={setTab}>
 
                 <TabsList className="grid grid-cols-2 mb-8 bg-[hsl(var(--rose-quartz))]/30 p-1 rounded-full">
 
                   <TabsTrigger
                     value="login"
-                    className="rounded-full data-[state=active]:bg-white data-[state=active]:text-[hsl(var(--marsala))]"
+                    className="font-button text-base rounded-full data-[state=active]:bg-white data-[state=active]:text-[hsl(var(--marsala))]"
                   >
                     Login
                   </TabsTrigger>
 
                   <TabsTrigger
                     value="signup"
-                    className="rounded-full data-[state=active]:bg-white data-[state=active]:text-[hsl(var(--marsala))]"
+                    className="font-button text-base rounded-full data-[state=active]:bg-white data-[state=active]:text-[hsl(var(--marsala))]"
                   >
                     Register
                   </TabsTrigger>
 
                 </TabsList>
 
-                {/* LOGIN */}
+
+                {/* =========================
+                    LOGIN
+                ========================== */}
                 <TabsContent value="login">
 
-                  <form onSubmit={handleLogin} className="space-y-5">
+                  <form
+                    onSubmit={handleLogin}
+                    className="space-y-5"
+                  >
 
+                    {/* Email */}
                     <div className="space-y-2">
-                      <Label>Email</Label>
+
+                      <Label className="font-button text-base text-[hsl(var(--marsala))]">
+                        Email
+                      </Label>
+
                       <Input
                         type="email"
                         placeholder="Enter your email"
                         required
+                        className="font-button text-base"
                       />
+
                     </div>
 
+
+                    {/* Password */}
                     <div className="space-y-2">
-                      <Label>Password</Label>
+
+                      <Label className="font-button text-base text-[hsl(var(--marsala))]">
+                        Password
+                      </Label>
+
                       <Input
                         type="password"
                         placeholder="Enter password"
                         required
+                        className="font-button text-base"
                       />
+
                     </div>
 
-                    <div className="flex items-center justify-between text-sm">
 
-                      <label className="flex items-center gap-2">
-                        <input type="checkbox" />
+                    {/* Remember / Forgot */}
+                    <div className="flex items-center justify-between font-button text-sm">
+
+                      <label className="font-button flex items-center gap-2">
+                        <input
+                          type="checkbox"
+                          className="font-button"
+                        />
                         Remember me
                       </label>
 
-                      <span className="hover:underline cursor-pointer">
+                      <span className="font-button hover:underline cursor-pointer">
                         Forgot password?
                       </span>
 
                     </div>
 
+
+                    {/* Sign In */}
                     <Button
                       type="submit"
-                      className="w-full rounded-full h-12 bg-[hsl(var(--marsala))] hover:bg-[hsl(var(--cognac))] text-white"
+                      className="w-full rounded-full h-12 bg-[hsl(var(--marsala))] hover:bg-[hsl(var(--cognac))] text-white font-button text-base"
                       disabled={isLoading}
                     >
                       {isLoading ? "Signing in..." : "Sign In"}
                     </Button>
 
+
                     {/* Divider */}
-                    <div className="flex items-center gap-3 my-4 text-gray-500">
+                    <div className="flex items-center gap-3 my-4 font-button text-gray-500 text-sm">
+
                       <hr className="flex-grow border-gray-300" />
-                      OR
+
+                      <span className="font-button">
+                        OR
+                      </span>
+
                       <hr className="flex-grow border-gray-300" />
+
                     </div>
 
-                    {/* Social login */}
+
+                    {/* Social Login */}
                     <div className="flex gap-4 justify-center">
 
-  <button className="w-12 h-12 flex items-center justify-center rounded-full bg-white border-white hover:shadow-md transition">
+                      <button
+                        type="button"
+                        className="w-12 h-12 flex items-center justify-center rounded-full bg-white border-white hover:shadow-md transition"
+                      >
+                        <img
+                          src="https://i.pinimg.com/1200x/45/20/dd/4520ddfc56208707045c56232e946f7f.jpg"
+                          alt="Google"
+                          className="w-5 h-5"
+                        />
+                      </button>
 
-    <img
-      src="https://i.pinimg.com/1200x/45/20/dd/4520ddfc56208707045c56232e946f7f.jpg"
-      alt="Google"
-      className="w-5 h-5"
-    />
+                      <button
+                        type="button"
+                        className="w-12 h-12 flex items-center justify-center rounded-full bg-white border-white hover:shadow-md transition"
+                      >
+                        <img
+                          src="https://i.pinimg.com/736x/ab/96/4b/ab964bcf79cbc2d86b15a9e2efe05ffa.jpg"
+                          alt="Facebook"
+                          className="w-5 h-5"
+                        />
+                      </button>
 
-  </button>
+                    </div>
 
-  <button className="w-12 h-12 flex items-center justify-center rounded-full bg-white border-white hover:shadow-md transition">
 
-    <img
-      src="https://i.pinimg.com/736x/ab/96/4b/ab964bcf79cbc2d86b15a9e2efe05ffa.jpg"
-      alt="Facebook"
-      className="w-5 h-5"
-    />
+                    {/* Register Link */}
+                    <p className="font-button text-center text-sm mt-4">
 
-  </button>
-
-</div>
-
-                    <p className="text-center text-sm mt-4">
                       Don’t have an account?{" "}
+
                       <span
-                        className="underline cursor-pointer"
+                        className="font-button underline cursor-pointer"
                         onClick={() => setTab("signup")}
                       >
                         Sign up
                       </span>
+
                     </p>
 
                   </form>
 
                 </TabsContent>
 
-                {/* REGISTER */}
+
+                {/* =========================
+                    REGISTER
+                ========================== */}
                 <TabsContent value="signup">
 
-                  <form onSubmit={handleSignup} className="space-y-5">
+                  <form
+                    onSubmit={handleSignup}
+                    className="space-y-5"
+                  >
 
+                    {/* Name */}
                     <div className="space-y-2">
-                      <Label>Name</Label>
-                      <Input placeholder="Enter your name" required />
+
+                      <Label className="font-button text-base text-[hsl(var(--marsala))]">
+                        Name
+                      </Label>
+
+                      <Input
+                        placeholder="Enter your name"
+                        required
+                        className="font-button text-base"
+                      />
+
                     </div>
 
+
+                    {/* Email */}
                     <div className="space-y-2">
-                      <Label>Email</Label>
-                      <Input type="email" required />
+
+                      <Label className="font-button text-base text-[hsl(var(--marsala))]">
+                        Email
+                      </Label>
+
+                      <Input
+                        type="email"
+                        placeholder="Enter your email"
+                        required
+                        className="font-button text-base"
+                      />
+
                     </div>
 
+
+                    {/* Password */}
                     <div className="space-y-2">
-                      <Label>Password</Label>
-                      <Input type="password" required />
+
+                      <Label className="font-button text-base text-[hsl(var(--marsala))]">
+                        Password
+                      </Label>
+
+                      <Input
+                        type="password"
+                        placeholder="Enter password"
+                        required
+                        className="font-button text-base"
+                      />
+
                     </div>
 
+
+                    {/* Confirm Password */}
                     <div className="space-y-2">
-                      <Label>Confirm Password</Label>
-                      <Input type="password" required />
+
+                      <Label className="font-button text-base text-[hsl(var(--marsala))]">
+                        Confirm Password
+                      </Label>
+
+                      <Input
+                        type="password"
+                        placeholder="Confirm password"
+                        required
+                        className="font-button text-base"
+                      />
+
                     </div>
 
-                    <label className="flex items-center gap-2 text-sm">
-                      <input type="checkbox" required />
-                      I agree with the Terms & Conditions
+
+                    {/* Terms */}
+                    <label className="font-button flex items-center gap-2 text-sm">
+
+                      <input
+                        type="checkbox"
+                        required
+                      />
+
+                      <span className="font-button">
+                        I agree with the Terms & Conditions
+                      </span>
+
                     </label>
 
+
+                    {/* Sign Up */}
                     <Button
                       type="submit"
-                      className="w-full rounded-full h-12 bg-[hsl(var(--marsala))] hover:bg-[hsl(var(--cognac))] text-white"
+                      className="w-full rounded-full h-12 bg-[hsl(var(--marsala))] hover:bg-[hsl(var(--cognac))] text-white font-button text-base"
                       disabled={isLoading}
                     >
                       {isLoading ? "Creating..." : "Sign Up"}
                     </Button>
 
-                    <div className="flex items-center gap-3 my-4 text-gray-500">
+
+                    {/* Divider */}
+                    <div className="flex items-center gap-3 my-4 font-button text-gray-500 text-sm">
+
                       <hr className="flex-grow border-gray-300" />
-                      OR
+
+                      <span className="font-button">
+                        OR
+                      </span>
+
                       <hr className="flex-grow border-gray-300" />
+
                     </div>
 
+
+                    {/* Social Login */}
                     <div className="flex gap-4 justify-center">
 
-  <button className="w-12 h-12 flex items-center justify-center rounded-full bg-white border-white hover:shadow-md transition">
+                      <button
+                        type="button"
+                        className="w-12 h-12 flex items-center justify-center rounded-full bg-white border-white hover:shadow-md transition"
+                      >
+                        <img
+                          src="https://i.pinimg.com/1200x/45/20/dd/4520ddfc56208707045c56232e946f7f.jpg"
+                          alt="Google"
+                          className="w-5 h-5"
+                        />
+                      </button>
 
-    <img
-      src="https://i.pinimg.com/1200x/45/20/dd/4520ddfc56208707045c56232e946f7f.jpg"
-      alt="Google"
-      className="w-5 h-5"
-    />
+                      <button
+                        type="button"
+                        className="w-12 h-12 flex items-center justify-center rounded-full bg-white border-white hover:shadow-md transition"
+                      >
+                        <img
+                          src="https://i.pinimg.com/736x/ab/96/4b/ab964bcf79cbc2d86b15a9e2efe05ffa.jpg"
+                          alt="Facebook"
+                          className="w-5 h-5"
+                        />
+                      </button>
 
-  </button>
+                    </div>
 
-  <button className="w-12 h-12 flex items-center justify-center rounded-full bg-white border-white  hover:shadow-md transition">
 
-    <img
-      src="https://i.pinimg.com/736x/ab/96/4b/ab964bcf79cbc2d86b15a9e2efe05ffa.jpg"
-      alt="Facebook"
-      className="w-5 h-5"
-    />
+                    {/* Login Link */}
+                    <p className="font-button text-center text-sm mt-4">
 
-  </button>
-
-</div>
-                    <p className="text-center text-sm mt-4">
                       Already have an account?{" "}
+
                       <span
-                        className="underline cursor-pointer"
+                        className="font-button underline cursor-pointer"
                         onClick={() => setTab("login")}
                       >
                         Sign in
                       </span>
+
                     </p>
 
                   </form>
@@ -328,8 +460,9 @@ export default function Auth() {
 
       </div>
 
+
       {/* Footer */}
-<div className="relative z-30 backdrop-blur-md border-t border-[hsl(var(--peach))]/30">
+      <div className="relative z-30 backdrop-blur-md border-t border-[hsl(var(--peach))]/30">
         <Footer />
       </div>
 
